@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1u6owro42uuk"]
+
+[ext_resource type="PackedScene" uid="uid://baqkrvtxnqqgo" path="res://manipulator.tscn" id="1_jnecp"]
+[ext_resource type="Texture2D" uid="uid://dhd7iqkhu3i35" path="res://shanghai_riverside_4k.exr" id="2_1oid8"]
+[ext_resource type="Script" path="res://GUI.gd" id="3_u64pe"]
+[ext_resource type="Texture2D" uid="uid://c8wc8rkiwhp05" path="res://wood-texture-box-4.jpg" id="4_w84lg"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c7377"]
+panorama = ExtResource( "2_1oid8" )
+
+[sub_resource type="Sky" id="Sky_yvu0f"]
+sky_material = SubResource( "PanoramaSkyMaterial_c7377" )
+
+[sub_resource type="Environment" id="Environment_xpi0e"]
+background_color = Color(0.643137, 0.576471, 0.270588, 0)
+sky = SubResource( "Sky_yvu0f" )
+sky_rotation = Vector3(-86.365, -1.881, 0)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 16.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_pc7fv"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ldwm"]
+albedo_texture = ExtResource( "4_w84lg" )
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jdei6"]
+
+[node name="Scene" type="Node"]
+
+[node name="Manipulator" parent="." instance=ExtResource( "1_jnecp" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.25)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( "Environment_xpi0e" )
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(5.96047e-08, -3.55271e-15, 1, 1, 2.11758e-22, -5.96047e-08, 0, 1, 3.55271e-15, 8.203, -0.534702, 4.64894)
+fov = 73.125
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.118488, 2.92759, 7.82633)
+light_indirect_energy = 16.05
+light_size = 13.15
+omni_range = 51.3
+omni_attenuation = 0.032352
+
+[node name="GUI" type="Control" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource( "3_u64pe" )
+
+[node name="LabelMode" type="Label" parent="GUI"]
+modulate = Color(0, 1, 0.152941, 1)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Mode: +"
+metadata/_edit_layout_mode = 0
+metadata/_edit_use_custom_anchors = false
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Box" type="Node3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Box"]
+mesh = SubResource( "BoxMesh_pc7fv" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_5ldwm" )
+
+[node name="Floor" type="Node3D" parent="Room"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Floor"]
+mesh = SubResource( "BoxMesh_jdei6" )
+
+[connection signal="mode_changed" from="Manipulator" to="GUI" method="_on_manipulator_mode_changed"]

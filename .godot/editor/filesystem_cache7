@@ -1,0 +1,15 @@
+0b7126e0c6e86d3ec295a72f5aa6e0bd
+::res://::1659511655
+export_presets.cfg::TextFile::-1::1654497902::0::1::::<><>::
+grapper.tscn::PackedScene::5020017066925032236::1657696411::0::1::::<><>::
+GUI.gd::GDScript::-1::1657092423::0::1::::<>Control<>::
+joint.tscn::PackedScene::9021341865172924825::1657696411::0::1::::<><>::
+link.tscn::PackedScene::2774410946459571392::1657696411::0::1::::<><>::
+manipulator.gd::GDScript::-1::1657696401::0::1::::<>Node3D<>::
+manipulator.tscn::PackedScene::2420089389586776970::1657696411::0::1::::<><>::res://manipulator.gd<>uid://bfr7e4igdx1ui
+scene.tscn::PackedScene::4254526583704880426::1657696412::0::1::::<><>::uid://baqkrvtxnqqgo<>uid://dhd7iqkhu3i35<>res://GUI.gd<>uid://c8wc8rkiwhp05
+shanghai_riverside_4k.exr::CompressedTexture2D::7658735176095007094::1653549850::1653549912::1::::<><>::
+wood-texture-box-4.jpg::CompressedTexture2D::7134670791953153092::1655226310::1655226807::1::::<><>::
+::res://scripts/::1657630386
+forward_kinematic.gd::GDScript::-1::1657092423::0::1::::ForwardKinematic<>Object<>::
+inverse_kinematic.gd::GDScript::-1::1657630386::0::1::::InverseKinematic<>Object<>::

@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://baqkrvtxnqqgo"]
+
+[ext_resource type="Script" path="res://manipulator.gd" id="1_t2n6g"]
+[ext_resource type="PackedScene" uid="uid://bfr7e4igdx1ui" path="res://link.tscn" id="2_cbglh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vj38k"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqlnp"]
+albedo_color = Color(0, 0.741176, 1, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_atpll"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_6eqnl"]
+size = Vector3(0.3, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muohe"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Manipulator" type="Node3D"]
+script = ExtResource( "1_t2n6g" )
+
+[node name="Joint0" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_vj38k" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_hqlnp" )
+
+[node name="Link0" parent="Joint0" instance=ExtResource( "2_cbglh" )]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0.5)
+
+[node name="Joint1" type="Node3D" parent="Joint0"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0/Joint1"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_vj38k" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_hqlnp" )
+
+[node name="Link1" parent="Joint0/Joint1" instance=ExtResource( "2_cbglh" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="Joint2" type="Node3D" parent="Joint0/Joint1"]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0/Joint1/Joint2"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_atpll" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_hqlnp" )
+
+[node name="Link2" parent="Joint0/Joint1/Joint2" instance=ExtResource( "2_cbglh" )]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Joint3" type="Node3D" parent="Joint0/Joint1/Joint2"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0/Joint1/Joint2/Joint3"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_atpll" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_hqlnp" )
+
+[node name="Link3" parent="Joint0/Joint1/Joint2/Joint3" instance=ExtResource( "2_cbglh" )]
+transform = Transform3D(5.96046e-08, -1, 0, 0, 5.96046e-08, -1, 1, 0, 5.96046e-08, 0, 0, 0.5)
+
+[node name="Joint4" type="Node3D" parent="Joint0/Joint1/Joint2/Joint3"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0/Joint1/Joint2/Joint3/Joint4"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_atpll" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_hqlnp" )
+
+[node name="Link4" parent="Joint0/Joint1/Joint2/Joint3/Joint4" instance=ExtResource( "2_cbglh" )]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Joint5" type="Node3D" parent="Joint0/Joint1/Joint2/Joint3/Joint4"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0/Joint1/Joint2/Joint3/Joint4/Joint5"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource( "CylinderMesh_atpll" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_hqlnp" )
+
+[node name="Link5" parent="Joint0/Joint1/Joint2/Joint3/Joint4/Joint5" instance=ExtResource( "2_cbglh" )]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0.5)
+
+[node name="Grapper" type="Node3D" parent="Joint0/Joint1/Joint2/Joint3/Joint4/Joint5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.817974)
+top_level = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Joint0/Joint1/Joint2/Joint3/Joint4/Joint5/Grapper"]
+transform = Transform3D(0, 0, 1, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, -0.0949952, -0.0298052)
+mesh = SubResource( "BoxMesh_6eqnl" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_muohe" )
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Joint0/Joint1/Joint2/Joint3/Joint4/Joint5/Grapper"]
+transform = Transform3D(0, 0, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0.0949465, -0.0652447)
+mesh = SubResource( "BoxMesh_6eqnl" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_muohe" )
